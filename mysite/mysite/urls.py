@@ -14,9 +14,24 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import path
 
-urlpatterns = [
-    path('stocks/', include('stocks.urls')),
-    path('admin/', admin.site.urls),
-]
+from . import views
+
+userLoggedIn = False
+if userLoggedIn == True:
+    urlpatterns = [
+        path('', views.homePage.as_view(), name='home'),
+        path('home/', views.signupView.as_view(), name='signup'),
+        path('home/', views.loginView.as_view(), name='login'),
+        path('home/stocks/', views.stockView, name='stocks')
+    ]
+# If the user is not signed in, they will be unable to view stocks.
+# Will add signup option later.
+else:
+    urlpatterns = [
+        path('', views.homePage.as_view(), name='home'),
+        path('home/', views.signupView.as_view(), name='signup'),
+        path('home/', views.loginView.as_view(), name='login'),
+
+    ]
