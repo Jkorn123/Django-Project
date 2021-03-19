@@ -1,26 +1,19 @@
-from django.http import HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render
-from django.urls import reverse
-from django.views import generic
-from django.utils import timezone
+from django.shortcuts import render
+from django.http import HttpResponse
+from django.template import loader
 
-class homePage(generic.DetailView):
-    print("sign up, log in")
+def home(request):
+    template = loader.get_template('stocks/home.html')
+    return HttpResponse(template.render(request))
 
-class signupView(generic.DetailView):
-    print("uname, pword, sign up")
+def stock(request, stocks):
+    return HttpResponse("This is the stocks page")
 
-class loginView(generic.DetailView):
-    print("uname, pword, log in")
+def index(request, indexes):
+    return HttpResponse("This is the indexes page")
 
-class stockView(generic.DetailView):
-    print("stocks")
+def etf(request, etfs):
+    return HttpResponse("This is the ETF's page")
 
-class indexView(generic.DetailView):
-    print("indexes")
-
-class ETFView(generic.DetailView):
-    print("ETFs")
-
-class mutualfundView(generic.DetailView):
-    print("mutual funds")
+def mutualfund(request, mutualfunds):
+    return HttpResponse("This is the mutual funds page")
