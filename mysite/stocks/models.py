@@ -1,12 +1,32 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-class Stocks(models.Model):
-    stockName = models.CharField(max_length=30)
+class stockName(models.Model):
+    fullName = models.CharField(max_length=120)
+    sTicker = models.CharField(max_length=10)
+    userName = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        primary_key=True
+    )
     def __str__(self):
-        return self.stockName
+        return self.fullName
 
-class Funds(models.Model):
-    fundName = models.CharField(max_length=30)
+class fundName(models.Model):
+    fullName = models.CharField(max_length=120)
+    fTicker = models.CharField(max_length=10)
+    userName = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        primary_key=True
+    )
     def __str__(self):
-        return self.fundName
+        return self.fullName
+
+
+class getdatePrice(models.Model):
+    date = models.DateTimeField('Day price')
+    price = models.FloatField(default=0.00)
+    stock = models.ForeignKey(Stock, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.date
