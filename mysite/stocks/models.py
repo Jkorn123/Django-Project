@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class stockName(models.Model):
     fullName = models.CharField(max_length=120)
     sTicker = models.CharField(max_length=10)
@@ -27,6 +28,6 @@ class fundName(models.Model):
 class getdatePrice(models.Model):
     date = models.DateTimeField('Day price')
     price = models.FloatField(default=0.00)
-    stock = models.ForeignKey(Stock, on_delete=models.CASCADE)
+#    stock = models.ForeignKey(Stock, on_delete=models.CASCADE)
     def __str__(self):
         return self.date

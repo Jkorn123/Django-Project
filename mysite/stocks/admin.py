@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import stockName, fundName, getdatePrice
 
-# Register your models here.
+admin.site.register(stockName)
+admin.site.register(fundName)
+admin.site.register(getdatePrice)
