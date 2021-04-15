@@ -12,7 +12,11 @@
   <body>
     <div class="container">
       <!-- Basic test for template -->
-      <h1>Welcome to the stocks page!</h1>
-    </div>{{stock.sName}}</div>
+      <h1>Stock Data</h1>
+      {% for stock in sName %}
+      {{stock.fullName}}
+      {{stock.sTicker}}
+      {% endfor %}
+    </div>
   </body>
 </html>

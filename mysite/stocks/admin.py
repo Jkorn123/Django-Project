@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import stockName, fundName, getdatePrice
+from .models import Stock, Fund, Price
 
-admin.site.register(stockName)
-admin.site.register(fundName)
-admin.site.register(getdatePrice)
+admin.site.register(Stock)
+admin.site.register(Fund)
+admin.site.register(Price)
