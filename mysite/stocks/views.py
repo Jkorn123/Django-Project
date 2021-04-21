@@ -15,13 +15,13 @@ def index(request):
     }
     return HttpResponse(template.render(context, request))
 
+# Working on getting the forms to be linked to this particular view.
 def stock(request):
     template = loader.get_template('stocks/stock.html')
     sName = Stock.objects.all()
     context = {
         'sName': sName,
     }
-    print(context)
     return HttpResponse(template.render(context, request))
 
 def fund(request):

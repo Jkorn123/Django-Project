@@ -13,10 +13,16 @@
     <div class="container">
       <!-- Basic test for template -->
       <h1>Stock Data</h1>
+      <!-- Fake Data test -->
       {% for stock in sName %}
       {{stock.fullName}}
       {{stock.sTicker}}
       {% endfor %}
     </div>
+    <!-- Will add a feature where if the user is logged in, he can press some
+    sort of submit button and will be able to access in depth data about this
+    particular stock -->
+    <div class="container">
+      <form action=""
   </body>
 </html>

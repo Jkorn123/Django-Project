@@ -13,6 +13,30 @@
     <div class="container">
       <!-- Basic test for template -->
       <h1>Welcome to the home page!</h1>
+      <!-- Checks if the user is logged in -->
+
+      {% if loggedIn %}
+      <!-- Welcomes the user -->
+        <h2>Welcome, {{ user.fName}} {{user.lName}}</h2>
+        <form style="padding-bottom:1em;" method="POST">
+          {% csrf_token %}
+
+      {% else %}
+
+        <form style="padding-bottom:1em;" method="POST">
+          {% csrf_token %}
+          <!-- Username form -->
+          <div class="form-group">
+            <label for="enterUname">Username</label>
+            <input type="text" class="form-control" name="enterUname" id="enterName"/>
+          </div>
+          <!-- Password form -->
+          <div class="form-group">
+            <label for="enterPwd">Password</label>
+            <input type="password" class="form-control" name="enterPwd" id="enterPwd"/>
+          </div>
+        </form>
+
     </div>
   </body>
 </html>
