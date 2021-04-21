@@ -4,11 +4,8 @@ from django.contrib.auth.models import User
 # This class will create a user profile which includes the login and the
 # password that user will need to enter in order to access the webpage.
 class User(models.Model):
-    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
-    # Creating the user and password models for different users. 
-    uName = models.CharField(max_length=20)
-    pName = models.CharField(max_length=20)
-
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    # Creating the user and password models for different users.
     def __str__(self):
         return self.uName
 

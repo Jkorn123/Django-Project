@@ -20,6 +20,10 @@
         <h2>Welcome, {{ user.fName}} {{user.lName}}</h2>
         <form style="padding-bottom:1em;" method="POST">
           {% csrf_token %}
+          <input type="hidden" name="logout" value="logout"></input>
+          <button type="submit" class="btn btn-danger">Logout</button>
+
+        </form>
 
       {% else %}
 
@@ -35,7 +39,10 @@
             <label for="enterPwd">Password</label>
             <input type="password" class="form-control" name="enterPwd" id="enterPwd"/>
           </div>
+
+          <button type="submit" class="btn btn-danger">Login</button>
         </form>
+      {% endif %}
 
     </div>
   </body>
