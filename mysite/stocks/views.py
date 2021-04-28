@@ -11,24 +11,27 @@ from django.contrib.auth import authenticate, login, logout
 def index(request):
     # Will work on the user authentication after the templates and models are
     # complete. (Not done yet)
-#    if request.POST:
-#        if 'enterUname' in request.POST.keys():
-#            user = authenticate(username=request.POST['enterUname'],
-#                password=request.POST['enterPwd'])
-#            if user is not None:
-#                login(request, user)
-#            else:
-#                pass
-#         elif 'logout' in request.POST.keys():
-#            logout(request)
-#    if request.user.is_authenticated:
-#        loggedIn = True
-#    else:
-#        loggedIn = False
+    if request.POST:
+        print(request.POST)
+        if 'enterUname' in request.POST.keys():
+            user = authenticate(username=request.POST['enterUname'],
+                password=request.POST['enterPwd'])
+            if user is not None:
+                login(request, user)
+                print('loggedIn')
+            else:
+                print('loggedIn failed')
+        elif 'logout' in request.POST.keys():
+            logout(request)
+    if request.user.is_authenticated:
+        loggedIn = True
+    else:
+        loggedIn = False
 
     template = loader.get_template('stocks/index.html')
     context = {
-    # Blank for now.
+        'loggedIn': loggedIn,
+        'user': request.user,
     }
     return HttpResponse(template.render(context, request))
 
