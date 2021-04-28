@@ -17,25 +17,13 @@
 
       {% if loggedIn %}
       <!-- Welcomes the user -->
-        <h2>Welcome, {{ user.fName}} {{user.lName}}</h2>
+        <h2>Welcome, {{ user.first_name}} {{user.last_name}}</h2>
         <form style="padding-bottom:1em;" method="POST">
           {% csrf_token %}
           <input type="hidden" name="logout" value="logout"></input>
           <button type="submit" class="btn btn-danger">Logout</button>
         </form>
-        <!--
-        <nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-center">
-          <a class="navbar-brand">Content:</a>
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="btn btn-info" role="button" href="stock.html">Stocks</a>
-            </li>
-            <li class="nav-item">
-              <a class="btn btn-info" role="button" href="fund.html">Funds</a>
-            </li>
-          </ul>
-        </nav>
-      -->
+
       {% else %}
 
         <form style="padding-bottom:1em;" method="POST">

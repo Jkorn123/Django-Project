@@ -4,6 +4,11 @@ from django.contrib.auth.models import User
 class Stock(models.Model):
     fullName = models.CharField(max_length=120)
     sTicker = models.CharField(max_length=10)
+    pEratio = models.FloatField()
+    EPS = models.FloatField()
+    Yield = models.FloatField()
+    Volume = models.FloatField()
+    marketCap = models.FloatField()
     userName = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
@@ -15,6 +20,12 @@ class Stock(models.Model):
 class Fund(models.Model):
     fullName = models.CharField(max_length=120)
     fTicker = models.CharField(max_length=10)
+    pEratio = models.FloatField()
+    EPS = models.FloatField()
+    Yield = models.FloatField()
+    Volume = models.FloatField()
+    netAssets = models.FloatField(
+    )
     userName = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
