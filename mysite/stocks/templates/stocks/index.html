@@ -23,6 +23,23 @@
           <input type="hidden" name="logout" value="logout"></input>
           <button type="submit" class="btn btn-danger">Logout</button>
         </form>
+        <!-- Including navigation bar if the user is signed in being able to access
+        the stocks and funds page -->
+        <!-- Link to other pages doesn't work yet -->
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-center">
+        <!--  <a class="navbar-brand">Content:</a>
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="btn btn-info" role="button" href="%templates 'stocks/index.html' %">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="btn btn-info" role="button" href="%templates 'stocks/stock.html' %">Stocks</a>
+            </li>
+            <li class="nav-item">
+              <a class="btn btn-info" role="button" href="%templates 'stocks/fund.html' %">Funds</a>
+            </li>
+          </ul> -->
+        </nav>
 
       {% else %}
 
@@ -40,9 +57,12 @@
           </div>
           <!-- Login form -->
           <button type="submit" class="btn btn-danger">Login</button>
+          <a class="btn btn-danger" href="signup/">Signup</a>
         </form>
-      {% endif %}
+        <!-- If the user does not have a valid login and password, then give
+        then the option to create a username and password -->
 
+      {% endif %}
     </div>
   </body>
 </html>
