@@ -10,16 +10,25 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.hashers import make_password
 
 def signup(request):
-    template = loader.get_template('stocks/signup.html')
-    context = {}
-    return HttpResponse(template.render(context, request))
-#    newUser = User(
-#        username = request.POST['username']
-#        password = make_password(request.POST['password'])
-#
-#    )
-#    newUser.save()
-
+    if request.POST:
+        newUser = User(
+            username = request.POST['enterUname'],
+            password = make_password(request.POST['enterPwd']),
+        #    first_name = request.POST['enterFname'],
+        #    last_name = request.POST['enterLname'],
+        )
+        newUser.save()
+        template = loader.get_template('stocks/signup.html')
+        context = {
+        #    'fname': first_name,
+        #    'lname': last_name,
+        }
+        return HttpResponse(template.render(context, request))
+    else:
+        context = {
+        }
+        template = loader.get_template('stocks/signup.html')
+        return HttpResponse(template.render(context, request))
 
 def index(request):
     # Will work on the user authentication after the templates and models are

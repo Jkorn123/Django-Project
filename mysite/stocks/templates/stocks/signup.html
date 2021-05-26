@@ -11,10 +11,21 @@
   </head>
   <body>
     <div class="container">
+      <h1>Sign Up!</h1>
       <form style="padding-bottom:1em;" method="POST">
         {% csrf_token %}
-        {{ form.as_p}}
+        <div class="form-group">
+          <label for="enterUname">Username</label>
+          <input type="text" class="form-control" name="enterUname" id="enterName"/>
+        </div>
+        <!-- Password form -->
+        <div class="form-group">
+          <label for="enterPwd">Password</label>
+          <input type="password" class="form-control" name="enterPwd" id="enterPwd"/>
+        </div>
+        <!-- Enter name -->
         <button type="submit" class="btn btn-danger">Register</button>
+        <a class="btn btn-danger" href="home/">Home</a>
       </form>
     </div>
   </body>
