@@ -14,14 +14,13 @@ def signup(request):
         newUser = User(
             username = request.POST['enterUname'],
             password = make_password(request.POST['enterPwd']),
-        #    first_name = request.POST['enterFname'],
-        #    last_name = request.POST['enterLname'],
+            first_name = request.POST['enterFname'],
+            last_name = request.POST['enterLname'],
         )
         newUser.save()
         template = loader.get_template('stocks/signup.html')
         context = {
-        #    'fname': first_name,
-        #    'lname': last_name,
+            'user': newUser,
         }
         return HttpResponse(template.render(context, request))
     else:
@@ -56,8 +55,10 @@ def index(request):
     }
     return HttpResponse(template.render(context, request))
 
-
 # Working on getting the forms to be linked to this particular view.
+# Trying to work on having the user input different stock data which will
+# get transfered and displayed on their personalized stock list in the
+# templates.
 def stock(request):
     template = loader.get_template('stocks/stock.html')
     sName = Stock.objects.all()
@@ -65,6 +66,7 @@ def stock(request):
         'sName': sName,
     }
     return HttpResponse(template.render(context, request))
+
 
 def fund(request):
     template = loader.get_template('stocks/fund.html')

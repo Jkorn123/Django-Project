@@ -8,11 +8,11 @@ class Stock(models.Model):
     # Will create a graph of the stock displaying the change in price.
     fullName = models.CharField(max_length=120)
     sTicker = models.CharField(max_length=10)
-    #pEratio = models.FloatField()
-    #EPS = models.FloatField()
-    #Yield = models.FloatField()
-    #Volume = models.FloatField()
-    #marketCap = models.FloatField()
+    pEratio = models.FloatField(default=0.00)
+    EPS = models.FloatField(default=0.00)
+    Yield = models.FloatField(default=0.00)
+    Volume = models.FloatField(default=0.00)
+    marketCap = models.FloatField(default=0.00)
     userName = models.ForeignKey(
         User,
         on_delete=models.CASCADE,

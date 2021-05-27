@@ -12,17 +12,46 @@
   <body>
     <div class="container">
       <!-- Basic test for template -->
-      <h1>Stock Data</h1>
-      <!-- Fake Data test -->
+      <h1>{{ user.first_name}}'s Personalized Stock List</h1>
       {% for stock in sName %}
-      {{stock.fullName}}
-      {{stock.sTicker}}
+        <div class="row border border-dark">
+          <!-- Testing the Fake Data Set for Apple. Inc stock -->
+          <table class="table">
+            <thread class="thread-dark">
+              <tr>
+                <th scope="col">Data Type:</th>
+                <th scope="col">Data Value:</th>
+              </tr>
+            </thread>
+            <tbody>
+              <tr>
+                <th scope="row">Company</th>
+                <td>{{stock.fullName}}</td>
+              </tr>
+              <tr>
+                <th scope="row">Ticker on NYSE</th>
+                <td>{{stock.sTicker}}</td>
+              </tr>
+              <tr>
+                <th scope="row">EPS (Earnings/share)</th>
+                <td>{{stock.EPS}}</td>
+              </tr>
+              <tr>
+                <th scope="row">Div. Yield</th>
+                <td>{{stock.Yield}}</td>
+              </tr>
+              <tr>
+                <th scope="row">Trading Volume (in millions)</th>
+                <td>{{stock.Volume}}</td>
+              </tr>
+              <tr>
+                <th scope="row">Market Cap (in Trillions)</th>
+                <td>{{stock.marketCap}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       {% endfor %}
     </div>
-    <!-- Will add a feature where if the user is logged in, he can press some
-    sort of submit button and will be able to access in depth data about this
-    particular stock. The default view will only show the chart of the stock. If
-    the user is logged in, then there will be additional data that shows up about
-    the stock such as the price, p/e ratio, and etc. -->
   </body>
 </html>
