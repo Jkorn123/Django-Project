@@ -28,27 +28,45 @@
               <tbody>
                 <tr>
                   <th scope="row">Company</th>
-                  <td>{{stock.fullName}}</td>
+                  <td><div class="form-group">
+                    <input type="text" class="form-control" name="Company" id="Company"/>
+                  </td>
                 </tr>
                 <tr>
                   <th scope="row">Ticker on NYSE</th>
-                  <td>{{stock.sTicker}}</td>
+                  <td><div class="form-group">
+                    <input type="text" class="form-control" name="Ticker" id="Ticker"/>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">PE ratio</th>
+                  <td><div class="form-group">
+                    <input type="number" class="form-control" name="PE" id="PE"/>
+                  </td>
                 </tr>
                 <tr>
                   <th scope="row">EPS (Earnings/share)</th>
-                  <td>{{stock.EPS}}</td>
+                  <td><div class="form-group">
+                    <input type="number" class="form-control" name="newEPS" id="newEPS"/>
+                  </td>
                 </tr>
                 <tr>
                   <th scope="row">Div. Yield</th>
-                  <td>{{stock.Yield}}</td>
+                  <td><div class="form-group">
+                    <input type="number" class="form-control" name="newYield" id="newYield"/>
+                  </td>
                 </tr>
                 <tr>
                   <th scope="row">Trading Volume (in millions)</th>
-                  <td>{{stock.Volume}}</td>
+                  <td><div class="form-group">
+                    <input type="number" class="form-control" name="newVolume" id="newVolume"/>
+                  </td>
                 </tr>
                 <tr>
-                  <th scope="row">Market Cap (in Trillions)</th>
-                  <td>{{stock.marketCap}}</td>
+                  <th scope="row">Market Cap (in millions)</th>
+                  <td><div class="form-group">
+                    <input type="number" class="form-control" name="newCap" id="newCap"/>
+                  </td>
                 </tr>
               </tbody>
             </table>

@@ -97,10 +97,7 @@ def stock(request):
             }
             return HttpResponse(template.render(context, request))
 
-
-
-
-def fund(request, username):
+def fund(request):
     #template = loader.get_template('stocks/nologinfund.html')
     #context = {
         # Nothing as of yet.
