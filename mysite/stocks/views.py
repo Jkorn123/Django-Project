@@ -75,23 +75,29 @@ def stock(request):
             Yield = request.POST['newYield'],
             Volume = request.POST['newVolume'],
             marketCap = requeset.POST['newCap'],
+            userName = request.user,
         )
         newStock.save()
+        if request.user.is_authenticated:
+            # Checks if the user has an account, otherwise redirects them to a
+            # default page.
+            template = loader.get_template('stocks/stock.html')
+            sName = Stock.objects.all()
+            context = {
+                'sName': sName,
+            }
+            return HttpResponse(template.render(context, request))
 
-        # if the user does not have a valid log in, then the nologinstock.html
-        # will load for the user.
-        # template = loader.get_tempalate('stocks/nologinstock.html')
-        #context = {
-            # Nothing as of yet.
-        #}
-        #return HttpResponse(template.render(context, request))
+        else:
+            # if the user does not have a valid log in, then the nologinstock.html
+            # will load for the user.
+            template = loader.get_tempalate('stocks/nologinstock.html')
+            context = {
+                # Nothing as of yet.
+            }
+            return HttpResponse(template.render(context, request))
 
-    template = loader.get_template('stocks/stock.html')
-    sName = Stock.objects.all()
-    context = {
-        'sName': sName,
-    }
-    return HttpResponse(template.render(context, request))
+
 
 
 def fund(request, username):
