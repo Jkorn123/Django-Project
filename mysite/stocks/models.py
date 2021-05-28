@@ -24,11 +24,11 @@ class Stock(models.Model):
 class Fund(models.Model):
     fullName = models.CharField(max_length=120)
     fTicker = models.CharField(max_length=10)
-    #pEratio = models.FloatField()
-    #EPS = models.FloatField()
-    #Yield = models.FloatField()
-    #Volume = models.FloatField()
-    #netAssets = models.FloatField()
+    pEratio = models.FloatField(default=0.00)
+    EPS = models.FloatField(default=0.00)
+    Yield = models.FloatField(default=0.00)
+    Volume = models.FloatField(default=0.00)
+    netAssets = models.FloatField(default=0.00)
     userName = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
@@ -37,7 +37,7 @@ class Fund(models.Model):
     def __str__(self):
         return self.fullName
 
-
+# I'll probably not use this particular model because plans have changed.
 class Price(models.Model):
     date = models.DateTimeField('Day price')
     price = models.FloatField(default=0.00)
