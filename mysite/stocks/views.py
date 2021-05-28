@@ -20,13 +20,13 @@ def signup(request):
         newUser = User(
             username = request.POST['enterUname'],
             password = make_password(request.POST['enterPwd']),
-            #first_name = request.POST['enterFname'],
-            #last_name = request.POST['enterLname'],
+            first_name = request.POST['enterFname'],
+            last_name = request.POST['enterLname'],
         )
         newUser.save()
         template = loader.get_template('stocks/signup.html')
         context = {
-            #'user': newUser,
+            'user': newUser,
         }
         return HttpResponse(template.render(context, request))
     else:
@@ -65,7 +65,27 @@ def index(request):
 # Trying to work on having the user input different stock data which will
 # get transfered and displayed on their personalized stock list in the
 # templates.
-def stock(request, username):
+def stock(request):
+    if request.POST:
+        newStock = Stock(
+            fullName = request.POST['Company'],
+            sTicker = request.POST['Ticker'],
+            pEratio = request.POST['PE'],
+            EPS = request.POST['newEPS'],
+            Yield = request.POST['newYield'],
+            Volume = request.POST['newVolume'],
+            marketCap = requeset.POST['newCap'],
+        )
+        newStock.save()
+
+        # if the user does not have a valid log in, then the nologinstock.html
+        # will load for the user.
+        # template = loader.get_tempalate('stocks/nologinstock.html')
+        #context = {
+            # Nothing as of yet.
+        #}
+        #return HttpResponse(template.render(context, request))
+
     template = loader.get_template('stocks/stock.html')
     sName = Stock.objects.all()
     context = {
@@ -75,6 +95,12 @@ def stock(request, username):
 
 
 def fund(request, username):
+    #template = loader.get_template('stocks/nologinfund.html')
+    #context = {
+        # Nothing as of yet.
+    #}
+    #return HttpResponse(template.render(context, request))
+
     template = loader.get_template('stocks/fund.html')
     fName = Fund.objects.all()
     context = {
