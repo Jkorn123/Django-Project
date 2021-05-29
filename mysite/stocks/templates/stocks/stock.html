@@ -13,7 +13,6 @@
     <div class="container">
       <!-- Basic test for template -->
       <h1>{{ user.first_name}}'s Personalized Stock List</h1>
-      {% for stock in sName %}
         <div class="row border border-dark">
           <!-- Testing the Fake Data Set for Apple. Inc stock -->
           <form style="padding-bottom:1em;" method="POST">
@@ -30,49 +29,106 @@
                   <th scope="row">Company</th>
                   <td><div class="form-group">
                     <input type="text" class="form-control" name="Company" id="Company"/>
+                  </div>
                   </td>
                 </tr>
                 <tr>
                   <th scope="row">Ticker on NYSE</th>
                   <td><div class="form-group">
                     <input type="text" class="form-control" name="Ticker" id="Ticker"/>
+                  </div>
                   </td>
                 </tr>
                 <tr>
                   <th scope="row">PE ratio</th>
                   <td><div class="form-group">
-                    <input type="number" class="form-control" name="PE" id="PE"/>
+                    <input type="number" step="any" class="form-control" name="PE" id="PE"/>
+                  </div>
                   </td>
                 </tr>
                 <tr>
                   <th scope="row">EPS (Earnings/share)</th>
                   <td><div class="form-group">
-                    <input type="number" class="form-control" name="newEPS" id="newEPS"/>
+                    <input type="number" step="any" class="form-control" name="newEPS" id="newEPS"/>
+                  </div>
                   </td>
                 </tr>
                 <tr>
                   <th scope="row">Div. Yield</th>
                   <td><div class="form-group">
-                    <input type="number" class="form-control" name="newYield" id="newYield"/>
+                    <input type="number" step="any" class="form-control" name="newYield" id="newYield"/>
+                  </div>
                   </td>
                 </tr>
                 <tr>
                   <th scope="row">Trading Volume (in millions)</th>
                   <td><div class="form-group">
-                    <input type="number" class="form-control" name="newVolume" id="newVolume"/>
+                    <input type="number" step="any" class="form-control" name="newVolume" id="newVolume"/>
+                  </div>
                   </td>
                 </tr>
                 <tr>
                   <th scope="row">Market Cap (in millions)</th>
                   <td><div class="form-group">
-                    <input type="number" class="form-control" name="newCap" id="newCap"/>
+                    <input type="number" step="any" class="form-control" name="newCap" id="newCap"/>
+                  </div>
                   </td>
                 </tr>
               </tbody>
             </table>
+            <button type="submit" class="btn btn-success">Submit</button>
           </form>
         </div>
-      {% endfor %}
+        <br>
+
+        {% if sName %}
+          {% for stock in sName %}
+            <div class="row border border-dark">
+              <table class="table">
+                <thread class="thread-dark">
+                  <tr>
+                    <th scope="col">Data Type:</th>
+                    <th scope="col">Data Value:</th>
+                  </tr>
+                </thread>
+                <tbody>
+                  <tr>
+                    <th scope="row">Company</th>
+                    <td>{{stock.fullName}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Ticker on NYSE</th>
+                    <td>{{stock.sTicker}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">PE ratio</th>
+                    <td>{{stock.pEratio}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">EPS (Earnings/share)</th>
+                    <td>{{stock.EPS}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Div. Yield</th>
+                    <td>{{stock.Yield}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Trading Volume (in millions)</th>
+                    <td>{{stock.Volume}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Market Cap (in millions)</th>
+                    <td>{{stock.marketCap}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          {% endfor %}
+        {% else %}
+          <div class="row">
+            <div class="container">There is no other stock data available</div>
+          </div>
+        {% endif %}
     </div>
   </body>
 </html>
