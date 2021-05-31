@@ -2,8 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from .models import Stock
-from .models import Fund
-from .models import Price
+from .models import UserStock
 
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -75,9 +74,14 @@ def stock(request):
             Yield = request.POST['newYield'],
             Volume = request.POST['newVolume'],
             marketCap = request.POST['newCap'],
-            userName = request.user,
         )
         newStock.save()
+
+        #userStock = UserStock(
+        #    numShares = request.POST['newShares'],
+        #    userName = request.user
+        #)
+        #userStock.save()
     if request.user.is_authenticated:
         # Checks if the user has an account, otherwise redirects them to a
         # default page.
@@ -96,18 +100,3 @@ def stock(request):
             # Nothing.
         }
         return HttpResponse(template.render(context, request))
-
-
-def fund(request):
-    #template = loader.get_template('stocks/nologinfund.html')
-    #context = {
-        # Nothing as of yet.
-    #}
-    #return HttpResponse(template.render(context, request))
-
-    template = loader.get_template('stocks/fund.html')
-    fName = Fund.objects.all()
-    context = {
-        'fName': fName,
-    }
-    return HttpResponse(template.render(context, request))

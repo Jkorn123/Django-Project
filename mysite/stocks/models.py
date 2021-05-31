@@ -13,34 +13,18 @@ class Stock(models.Model):
     Yield = models.FloatField(default=0.00)
     Volume = models.FloatField(default=0.00)
     marketCap = models.FloatField(default=0.00)
-    userName = models.ForeignKey(
-        User,
-        on_delete=models.CASCADE,
-        primary_key=True
-    )
+
     def __str__(self):
         return self.fullName
 
-class Fund(models.Model):
-    fullName = models.CharField(max_length=120)
-    fTicker = models.CharField(max_length=10)
-    pEratio = models.FloatField(default=0.00)
-    EPS = models.FloatField(default=0.00)
-    Yield = models.FloatField(default=0.00)
-    Volume = models.FloatField(default=0.00)
-    netAssets = models.FloatField(default=0.00)
+class UserStock(models.Model):
     userName = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        primary_key=True
     )
-    def __str__(self):
-        return self.fullName
+    stock = models.ForeignKey(
+        Stock,
+        on_delete=models.CASCADE,
 
-# I'll probably not use this particular model because plans have changed.
-class Price(models.Model):
-    date = models.DateTimeField('Day price')
-    price = models.FloatField(default=0.00)
-#    stock = models.ForeignKey(Stock, on_delete=models.CASCADE)
-    def __str__(self):
-        return self.date
+    )
+    numShares = models.IntegerField(default=0)
