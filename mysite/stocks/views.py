@@ -10,10 +10,10 @@ from django.contrib.auth.hashers import make_password
 
 def signup(request):
     """
-    Purpose: The purpose of this particular function is to allow the user to
-    create an account if they do not have one. It takes the username, password,
-    first name, and last name of the user and saves the data. In the future, the
-    user will be able to create a personalized stock list for their account.
+        Purpose: The purpose of this particular function is to allow the user to
+        create an account if they do not have one. It takes the username, password,
+        first name, and last name of the user and saves the data. In the future, the
+        user will be able to create a personalized stock list for their account.
     """
     if request.POST:
         newUser = User(
@@ -35,8 +35,13 @@ def signup(request):
         return HttpResponse(template.render(context, request))
 
 def index(request):
-    # Will work on the user authentication after the templates and models are
-    # complete. (Not done yet)
+    """
+        Purpose: The purpose of this function is to authenticate the user's login.
+        If their username and password are valid, then the user will be able to
+        access their stock list/data. However, if the their username is invalid,
+        then they won't be able to see or add to their stock list and when they go
+        to the stocks page, they will only be able to see a generic stock page.
+    """
     if request.POST:
         if 'enterUname' in request.POST.keys():
             user = authenticate(username=request.POST['enterUname'],
@@ -66,30 +71,46 @@ def index(request):
 # templates.
 def stock(request):
     if request.POST:
-        newStock = Stock(
-            fullName = request.POST['Company'],
-            sTicker = request.POST['Ticker'],
-            pEratio = request.POST['PE'],
-            EPS = request.POST['newEPS'],
-            Yield = request.POST['newYield'],
-            Volume = request.POST['newVolume'],
-            marketCap = request.POST['newCap'],
-        )
-        newStock.save()
+        try:
+            newStock = Stock.objects.get(sTicker=request.POST['Ticker'])
 
-        #userStock = UserStock(
-        #    numShares = request.POST['newShares'],
-        #    userName = request.user
-        #)
-        #userStock.save()
+        except:
+            newStock = Stock(
+                fullName = request.POST['Company'],
+                sTicker = request.POST['Ticker'],
+                pEratio = request.POST['PE'],
+                EPS = request.POST['newEPS'],
+                Yield = request.POST['newYield'],
+                Volume = request.POST['newVolume'],
+                marketCap = request.POST['newCap'],
+            )
+            newStock.save()
+
+        userStock = UserStock(
+            stock = newStock,
+            numShares = request.POST['newShares'],
+            userName = request.user,
+        )
+        userStock.save()
+
     if request.user.is_authenticated:
         # Checks if the user has an account, otherwise redirects them to a
         # default page.
         template = loader.get_template('stocks/stock.html')
-        sName = Stock.objects.all()
+        uStocks = UserStock.objects.filter(userName=request.user)
+        userStocks = []
+        for ustock in uStocks:
+            stockDict = {}
+            stockDict["ustock"] = ustock
+            userStock = Stock.objects.get(id=ustock.stock_id)
+            stockDict["stockInfo"] = userStock
+            userStocks.append(stockDict)
+
         context = {
-            'sName': sName,
+            'uStocks': userStocks,
+            'userInfo': request.user,
         }
+        print(context)
         return HttpResponse(template.render(context, request))
 
     else:

@@ -26,6 +26,13 @@
               </thread>
               <tbody>
                 <tr>
+                  <th scope="row"># of Shares</th>
+                  <td><div class="form-group">
+                    <input type="number" class="form-control" name="newShares" id="newShares"/>
+                  </div>
+                  </td>
+                </tr>
+                <tr>
                   <th scope="row">Company</th>
                   <td><div class="form-group">
                     <input type="text" class="form-control" name="Company" id="Company"/>
@@ -81,8 +88,8 @@
         </div>
         <br>
 
-        {% if sName %}
-          {% for stock in sName %}
+        {% if uStocks %}
+          {% for ustock in uStocks %}
             <div class="row border border-dark">
               <table class="table">
                 <thread class="thread-dark">
@@ -94,41 +101,42 @@
                 <tbody>
                   <tr>
                     <th scope="row">Company</th>
-                    <td>{{stock.fullName}}</td>
+                    <td>{{ustock.stockInfo.fullName}}</td>
                   </tr>
                   <tr>
                     <th scope="row">Ticker on NYSE</th>
-                    <td>{{stock.sTicker}}</td>
+                    <td>{{ustock.stockInfo.sTicker}}</td>
                   </tr>
                   <tr>
                     <th scope="row">PE ratio</th>
-                    <td>{{stock.pEratio}}</td>
+                    <td>{{ustock.stockInfo.pEratio}}</td>
                   </tr>
                   <tr>
                     <th scope="row">EPS (Earnings/share)</th>
-                    <td>{{stock.EPS}}</td>
+                    <td>{{ustock.stockInfo.EPS}}</td>
                   </tr>
                   <tr>
                     <th scope="row">Div. Yield</th>
-                    <td>{{stock.Yield}}</td>
+                    <td>{{ustock.stockInfo.Yield}}</td>
                   </tr>
                   <tr>
                     <th scope="row">Trading Volume (in millions)</th>
-                    <td>{{stock.Volume}}</td>
+                    <td>{{ustock.stockInfo.Volume}}</td>
                   </tr>
                   <tr>
                     <th scope="row">Market Cap (in millions)</th>
-                    <td>{{stock.marketCap}}</td>
+                    <td>{{ustock.stockInfo.marketCap}}</td>
                   </tr>
                 </tbody>
               </table>
-              <br>
             </div>
+            <br>
           {% endfor %}
         {% else %}
-          <div class="row">
+          <div class="row border border-dark">
             <div class="container">There is no other stock data available</div>
           </div>
+          <br>
         {% endif %}
     </div>
   </body>
