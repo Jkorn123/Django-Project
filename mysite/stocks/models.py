@@ -13,6 +13,8 @@ class Stock(models.Model):
     Yield = models.FloatField(default=0.00)
     Volume = models.FloatField(default=0.00)
     marketCap = models.FloatField(default=0.00)
+    numShares = models.IntegerField(default=0.00)
+
 
     def __str__(self):
         return self.fullName
@@ -25,6 +27,4 @@ class UserStock(models.Model):
     stock = models.ForeignKey(
         Stock,
         on_delete=models.CASCADE,
-
     )
-    numShares = models.IntegerField(default=0)

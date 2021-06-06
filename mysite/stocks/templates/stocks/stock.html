@@ -131,7 +131,31 @@
               </table>
             </div>
             <br>
+
+            <div class="row border border-dark">
+              <table class="table">
+                <thread class="thread-dark">
+                  <tr>
+                    <th scope="col">Your Holdings</th>
+                    <th scope="col">Data Value:</th>
+                  </tr>
+                </thread>
+                <tbody>
+                  <tr>
+                    <th scope="row">Company</th>
+                    <td>{{ustock.stockInfo.fullName}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Shares</th>
+                    <td>{{ustock.stockInfo.numShares}}
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <br>
+
           {% endfor %}
+
         {% else %}
           <div class="row border border-dark">
             <div class="container">There is no other stock data available</div>

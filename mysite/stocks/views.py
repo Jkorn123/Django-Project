@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from .models import Stock
@@ -83,12 +83,12 @@ def stock(request):
                 Yield = request.POST['newYield'],
                 Volume = request.POST['newVolume'],
                 marketCap = request.POST['newCap'],
+                numShares = request.POST['newShares'],
             )
             newStock.save()
 
         userStock = UserStock(
             stock = newStock,
-            numShares = request.POST['newShares'],
             userName = request.user,
         )
         userStock.save()
